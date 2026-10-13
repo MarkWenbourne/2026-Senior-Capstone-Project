@@ -126,6 +126,7 @@ The Definition of Done will be reviewed during sprint retrospectives and updated
 **Minimum expectation:** Every one of the four student contributors completes **at least one accepted piece of work per sprint**. Work should be sized so each member has a realistic opportunity to meet this expectation. Pairing is encouraged, but each person's contribution must be identifiable.
 
 | Work type | Where evidence lives | What counts as accepted |
+| --- | --- | --- |
 | Code, tests, configuration | GitHub repository, linked issue, and PR | Reviewed and merged PR meeting applicable Definition of Done checks |
 | Documentation or design | Repository documentation and linked GitHub Issue | Reviewed and merged documentation, or an approved linked design deliverable |
 | Research, planning, partner coordination | GitHub Issue/Projects with meeting notes or approved artifact; partner system only if authorized | Issue has a concrete deliverable and acceptance confirmation from the team or mentor |
