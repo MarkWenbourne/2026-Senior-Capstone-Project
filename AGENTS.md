@@ -2,7 +2,7 @@
 
 Context and rules for AI tools used on this project.
 Owner: Addison Howard
-Last reviewed: 10/11/2026
+Last reviewed: 11/01/2026
 
 
 ## Project Context
@@ -17,11 +17,16 @@ The planned work includes:
 
 ## Repository Guidance
 
-- The team has not yet reviewed the inherited codebase. 
-- Setup instructions are in `README.md`. The workflow, review requirements, and Definition of Done are in `CONTRIBUTING.md`.
-- Limit each change to the task at hand, and flag any new dependency for team review.
-- Report only test and build results that were actually obtained. State clearly when a check was not run.
-
+- The inherited Hazard Track codebase has not yet been made available to the team. Do not assume the existing application's architecture, technology stack, APIs, database schema, or development commands.
+- `README.md` provides the project overview and verified setup instructions.
+- `CONTRIBUTING.md` defines the contribution workflow, review requirements, and Definition of Done.
+- `docs/requirements.md` defines functional requirements, non-functional requirements, acceptance criteria, and constraints.
+- `docs/design.md` describes the proposed architecture, interfaces, data relationships, and deferred technical decisions.
+- `docs/risks.md` tracks project risks, blockers, mitigations, and dependencies.
+- Keep changes limited to the assigned task and flag new dependencies or architectural decisions for team review.
+- Update relevant documentation when changing requirements, interfaces, workflows, or implementation decisions.
+- Report only test and build results that were actually obtained. Clearly identify checks that were not run or are unavailable.
+- Never describe planned functionality, tests, CI workflows, or deployment processes as implemented until they exist and have been verified.
 
 
 ## AI Use and Confidentiality
@@ -40,7 +45,7 @@ The planned work includes:
 - Passing tests do not establish that compliance logic, decay calculations, or cost figures are correct. A teammate must verify these independently.
 
 
-## Planned Updates (Week 2)
+## Planned Updates
 
 | Missing guidance | Owner | Update trigger |
 | --- | --- | --- |
