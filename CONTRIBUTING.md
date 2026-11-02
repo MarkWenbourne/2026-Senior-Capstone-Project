@@ -28,7 +28,7 @@ Treat teammates, mentors, and project partners respectfully. Give constructive f
 
 ## Branching & Workflow
 
-Use a lightweight feature-branch workflow with `main` as the protected default branch. Create one branch per issue, such as `feature/23-container-labels`, `fix/31-status-update`, or `docs/12-setup-guide`. Open a pull request (PR) into `main`; do not commit directly to `main` after branch protection is enabled. Prefer updating a feature branch from `main` before review; use merge or squash according to the team's final GitHub settings. Do not force-push shared branches without agreement.
+Use a lightweight feature-branch workflow with `main` as the intended default branch. Branch protection is planned but has not yet been verified as enabled.
 
 **TBD:** Confirm default branch, branch protection, merge strategy, and whether rebasing is allowed. **Owner:** Quality Owner, Noah Gregie
 
@@ -72,23 +72,34 @@ Some automated checks have not yet been implemented because the development stac
 
 ### Required Checks
 
-| Check | Acceptance Condition | Enforcement / Current Status | Target Sprint | Owner |
+| Check | Acceptance Condition | Enforcement / Current Status | Target | Owner |
 |---|---|---|---|---|
 | Issue Acceptance | The contribution meets the acceptance criteria defined in its linked GitHub Issue. | GitHub Issues and PR checklist; manual verification currently required. | Sprint 2 | Mark Wenbourne — Project Manager |
 | Code Review | At least one teammate other than the author reviews and approves the PR. | GitHub PR approval; branch protection not yet configured. | Sprint 3 | Noah Gregie — Quality Owner |
-| Automated Testing | Relevant tests pass, and new functionality includes appropriate tests where feasible. | GitHub Actions test job; not yet configured. Manual testing evidence required until implemented. | Sprint 4 | Noah Gregie — Quality Owner |
+| Automated Testing | Relevant automated tests pass. At least one meaningful test must be included in the initial CI workflow, even if the inherited application remains unavailable. | GitHub Actions test job; not yet configured. Manual verification is required until automation is available but does not replace checkpoint CI evidence. | Repo Checkpoint 1 | Noah Gregie — Quality Owner |
 | Code Style and Linting | Code follows the selected formatting and linting standards. | GitHub Actions lint job or pre-commit hook; not yet configured. | Sprint 4 | Noah Gregie — Quality Owner |
 | Security Checks | No credentials or confidential information are committed, and applicable security checks pass. | Manual review initially; automated secret and dependency scanning planned. | Sprint 4 | Noah Gregie — Quality Owner |
 | Documentation | Relevant project documentation is updated to reflect changes. | PR checklist and reviewer verification. | Sprint 3 | Eduardo Juchem Balzan — Deployment and Documentation Owner |
-| CI Status | All required automated jobs pass before merging. | GitHub Actions and required status checks; not yet configured. | Sprint 4 | Noah Gregie — Quality Owner |
+| CI Status | All required automated jobs pass before merging. A passing CI run must be available for the Repo Checkpoint 1 submission commit. | GitHub Actions and required status checks; not yet configured. | Repo Checkpoint 1 | Noah Gregie — Quality Owner |
 
 ### Enforcement and Implementation
 
 The Quality Owner is responsible for maintaining the Definition of Done and coordinating the implementation of quality checks.
 
 - **Sprint 2:** Establish issue acceptance requirements and document how contributions are reviewed and accepted.
-- **Sprint 3:** Configure pull request review requirements, establish branch protection, and finalize documentation review expectations.
-- **Sprint 4:** Implement automated testing, linting, applicable security scanning, and required GitHub Actions status checks.
+- **Repo Checkpoint 1:** Establish an initial automated CI workflow that runs on pull requests and includes at least one meaningful automated test. Obtain a passing run associated with the submitted commit.
+- **Sprint 3:** Configure pull request review requirements, establish branch protection where repository permissions allow, and finalize documentation review expectations.
+- **Sprint 4:** Expand automated testing, implement linting and applicable security scanning, and strengthen required GitHub Actions status checks.
+
+The inherited application codebase remains unavailable, so the team has not yet confirmed its build or test framework.
+
+The initial CI workflow may use a minimal scaffold if that approach satisfies the checkpoint requirements. The team will confirm any unresolved expectations with course instructors.
+
+These targets are proposed until approved by the team. Any changes to the schedule must be recorded in GitHub Issues/Projects.
+
+Each unfinished check must have a corresponding GitHub Issue assigned to a named team member, with its target and acceptance criteria recorded.
+
+The Project Manager tracks progress on these issues, while the Quality Owner coordinates technical implementation. The AI Coordinator maintains confidentiality requirements and advises on security-related restrictions.
 
 These sprint targets are proposed and must be confirmed by the team before submission. Changes to approved targets must be recorded in GitHub Issues/Projects.
 
@@ -112,6 +123,40 @@ Before merging a pull request, the following conditions must be satisfied:
 Until automated checks are implemented, contributors must identify which checks were performed manually and which could not be completed. Unavailable checks must never be reported as passing.
 
 Once the planned CI gates are implemented, all required automated checks must pass before merging. Exceptions must be documented and approved through the team's established decision process.
+
+### Repo Checkpoint 1 Quality Gate
+
+Repo Checkpoint 1 requires evidence of a passing CI run
+associated with the submitted commit.
+
+The initial workflow must run on pull requests and include
+at least one meaningful automated test.
+
+The inherited Hazard Track codebase remains unavailable,
+so the team has not yet verified the application's build,
+test framework, or dependencies.
+
+If an appropriate scaffold can be established without
+making unsupported assumptions about the inherited
+application, the team will use it to provide initial
+automated test evidence.
+
+**Current Status:** Not implemented.
+
+**Owner:** Noah Gregie, Quality Owner.
+
+**Target:** Repo Checkpoint 1, subject to instructor guidance
+regarding the inherited-codebase access issue.
+
+Once implemented, the team will document:
+- The workflow filename.
+- The automated test name and location.
+- The command used to run the test.
+- A link to a successful GitHub Actions run.
+- The commit associated with the successful run.
+
+Manual verification remains necessary where appropriate,
+but it does not replace required automated CI evidence.
 
 ### Shared Responsibility
 
@@ -143,17 +188,80 @@ Keep PRs focused on one issue. Include a summary, linked issue, testing evidence
 
 ## CI/CD
 
-**Current state:** No CI/CD pipeline has been configured. **Proposed:** Use GitHub Actions to run the selected formatter/linter, tests, and applicable security checks on pull requests. Pipeline definitions will live under `.github/workflows/` once created. Review results in the PR's **Checks** tab or the repository's **Actions** tab; authorized contributors may re-run failed jobs after diagnosing the failure. Merging should require all designated checks to pass once configured.
+### Current Status
 
-**TBD:** Workflow filenames, job names, exact commands, release automation, and deployment permissions.
+No CI/CD pipeline has been configured.
 
-The **Quality Owner**, Noah Gregie, is responsible for establishing and maintaining the project's continuous integration pipeline.
+The inherited Hazard Track codebase remains unavailable,
+so the team has not yet verified the application's build
+commands, test framework, or dependency requirements.
 
-The team plans to configure GitHub Actions during Sprint 3 or 4, following confirmation of the development stack. The initial pipeline will include automated tests, linting and formatting checks, and applicable security checks.
+### Initial Continuous Integration
 
-GitHub branch protection and required status checks will be configured during Sprint 3 or 4.
+The team intends to establish an initial GitHub Actions
+workflow for Repo Checkpoint 1.
 
-Until these checks are implemented, pull requests must document manual verification and identify any unavailable automated checks. Once configured, all required CI jobs must pass before a pull request can be merged.
+The workflow must:
+- Run automatically on pull requests.
+- Execute at least one meaningful automated test.
+- Report whether the test passes or fails.
+- Produce a GitHub Actions run that can be linked as
+  evidence for the checkpoint submission.
+
+If the inherited application remains unavailable, the
+team may establish a minimal testable scaffold, subject
+to course instructor guidance.
+
+The initial scaffold will not be represented as the
+existing Hazard Track application.
+
+### Future CI Improvements
+
+After the inherited codebase is reviewed, the team will
+expand CI to include applicable checks such as:
+
+- Building the existing application.
+- Running unit and integration tests.
+- Running formatting and linting checks.
+- Performing applicable dependency and security checks.
+
+The exact commands, tools, and required jobs will be
+documented once verified.
+
+### Branch Protection and Required Checks
+
+The team intends to configure branch protection and
+required status checks for the default branch.
+
+These protections have not yet been verified as enabled.
+
+Once configured, required CI jobs must pass before a
+pull request can be merged.
+
+### Ownership
+
+**Owner:** Noah Gregie, Quality Owner.
+
+The Quality Owner is responsible for coordinating CI
+implementation and maintaining the workflow.
+
+All team members are responsible for addressing test
+failures introduced by their contributions.
+
+### Evidence and Documentation
+
+Once CI is implemented, this section and `README.md`
+will document:
+
+- GitHub Actions workflow filename.
+- Commands used to run automated checks.
+- Test locations and expected behavior.
+- How to inspect results in GitHub.
+- Links to relevant workflow runs.
+
+Until CI is operational, it must be reported as
+not configured. Manual testing or a planned workflow
+must not be described as passing automated CI.
 
 ## Security & Secrets
 
@@ -163,9 +271,27 @@ Never commit API keys, passwords, access tokens, real sensitive records, or othe
 
 ## Documentation Expectations
 
-Update `README.md` when setup or usage changes; maintain relevant technical documentation under `docs/` if that directory is adopted. Document interfaces and business rules as they are implemented, including radioactive-waste pickup, container tracking, and cost-analysis behaviors. Update `CHANGELOG.md` for user-visible changes once a changelog process is adopted. Comments and docstrings should explain non-obvious behavior and important constraints, not repeat the code. PRs should link documentation updates or explain why none are needed.
+The repository maintains the following living documents:
 
-**TBD:** Documentation structure, API reference generator, and changelog format. **Owner:** Deployment and Documentation Owner, Eduardo Juchem Balzan
+- `README.md` — Project overview, prerequisites, setup, and verified run/test instructions.
+- `CONTRIBUTING.md` — Contribution workflow, review requirements, and Definition of Done.
+- `AGENTS.md` — Project context and instructions for AI-assisted development.
+- `docs/requirements.md` — Functional and non-functional requirements, acceptance criteria, constraints, and success metrics.
+- `docs/design.md` — Architecture, interfaces, data model, deployment considerations, and deferred technical decisions.
+- `docs/risks.md` — Risks, blockers, mitigations, and dependencies.
+
+Update the relevant documentation whenever changes affect
+setup procedures, requirements, interfaces, architecture,
+testing, or deployment.
+
+Documentation must reflect the actual state of the
+repository. Proposed features and processes must be clearly
+distinguished from implemented functionality.
+
+Pull requests should link relevant documentation updates
+or explain why none are needed.
+
+**Owner:** Deployment and Documentation Owner, Eduardo Juchem Balzan.
 
 ## Release Process
 
