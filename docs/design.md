@@ -18,6 +18,9 @@ The expansion extends the existing application rather than replacing it. The goa
 
 ARCHITECTURE
 
+<img width="1370" height="956" alt="Hazard Track Diagram System Context" src="https://github.com/user-attachments/assets/2f44ed2f-bf8f-41ef-a443-59b6944bd309" />
+<img width="1712" height="1634" alt="Hazard Track Diagram Provisional Container Architecture" src="https://github.com/user-attachments/assets/e29e0536-3c1a-4f75-8085-45178d182122" />
+
 Context
 
 Two groups of people use Hazard Track, and one outside system connects to it:
